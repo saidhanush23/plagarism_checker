@@ -1,0 +1,29 @@
+from difflib import SequenceMatcher
+
+def calculate_similarity(text1, text2):
+    similarity_ratio = SequenceMatcher(None, text1, text2).ratio()
+    return similarity_ratio
+
+def read_text_from_file(file_path):
+    with open(file_path, 'r') as file:
+        text = file.read()
+    return text
+
+def main():
+    text1_path = input("Enter the path of the first text file: ")
+    text2_path = input("Enter the path of the second text file: ")
+    
+    text1 = read_text_from_file(text1_path)
+    text2 = read_text_from_file(text2_path)
+    
+    similarity_ratio = calculate_similarity(text1, text2)
+    
+    print(f"Similarity Ratio: {similarity_ratio:.2%}")
+    
+    if similarity_ratio > 0.8:
+        print("Possible plagiarism detected!")
+    else:
+        print("No significant plagiarism detected.")
+
+if __name__ == "__main__":
+    main()
